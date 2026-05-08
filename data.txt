@@ -5,3 +5,5 @@ Python is a popular programming language used for web development, AI, and autom
 FastAPI is a modern web framework for building APIs with Python.
 
 Machine learning allows computers to learn from data and make predictions.
+
+This is the nation of Addis ababa 

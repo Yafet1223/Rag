@@ -1,2 +1,3 @@
 Embeding
 Chunking
+Vector Databases + FAISS
