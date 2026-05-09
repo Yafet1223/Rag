@@ -70,12 +70,8 @@ candidate_indices = set(vec_indices[0]) | set(bm25_indices)
 # ------------------------
 reranked = []
 
-for i in candidate_indices:
-    score = vec_scores[0][list(vec_indices[0]).index(i)] if i in vec_indices[0] else 0
-    score += bm25_scores[i]
-    reranked.append((score, i))
 
-reranked.sort(reverse=True)
+
 
 top_chunks = [chunks[i] for _, i in reranked[:3]]
 
