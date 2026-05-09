@@ -60,7 +60,6 @@ vec_scores, vec_indices = index.search(q_emb, 5)
 # ------------------------
 bm25_scores = bm25.get_scores(query.lower().split())
 bm25_indices = np.argsort(bm25_scores)[::-1][:5]
-
 # ------------------------
 # MERGE CANDIDATES
 # ------------------------

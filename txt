@@ -1,3 +1,4 @@
 Embeding
 Chunking
 Vector Databases + FAISS
+FAISS + BM25 → clean filtering → reranker → LLM → correct answer
