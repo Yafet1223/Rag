@@ -1,0 +1,25 @@
+Project: Mini Store API
+
+We’ll build:
+
+User registration
+Create products
+List products
+Get single product
+Delete product
+
+
+1. Notes API
+
+Best for mastering:
+
+CRUD
+search
+pagination
+timestamps
+Features
+Create notes
+Update notes
+Delete notes
+Search notes
+Filter by date

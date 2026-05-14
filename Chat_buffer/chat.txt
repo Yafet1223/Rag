@@ -1,0 +1,14 @@
+User Message
+    ↓
+FastAPI Endpoint
+    ↓
+Chat Buffer Manager
+    ↓
+Recent Messages
+    ↓
+Context Builder
+    ↓
+LLM
+models.py
+
+This defines DATABASE TABLES.
