@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <!-- Use Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <button class="new-chat-btn">
+                <i class="fa-solid fa-plus"></i> New Chat
+            </button>
+            <div class="history-list">
+                <p class="history-title">Recent</p>
+                <div class="history-item active">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Frontend UI Design</span>
+                </div>
+                <div class="history-item">
+                    <i class="fa-regular fa-message"></i>
+                    <span>RAG Backend API</span>
+                </div>
+                <div class="history-item">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Database Schema</span>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">Y</div>
+                    <span>Yafet</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <header class="chat-header">
+                <h2>AI Assistant</h2>
+                <div class="model-selector">
+                    <span>Gemini 3.1 Pro</span> <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </header>
+
+            <div class="chat-container" id="chatContainer">
+                <div class="welcome-screen">
+                    <div class="glowing-orb"></div>
+                    <h1>How can I help you today?</h1>
+                </div>
+                
+                <!-- Messages will be appended here -->
+                <div class="messages-wrapper" id="messagesWrapper" style="display: none;">
+                    <!-- Example AI Message will be inserted here when chat starts -->
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-box">
+                    <button class="attach-btn"><i class="fa-solid fa-paperclip"></i></button>
+                    <textarea id="messageInput" placeholder="Message AI Assistant..." rows="1"></textarea>
+                    <button class="send-btn" id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+                <p class="disclaimer">AI can make mistakes. Consider verifying important information.</p>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
