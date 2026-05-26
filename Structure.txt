@@ -1,0 +1,15 @@
+User Message
+      ↓
+Memory Router (decision system)
+      ↓
+   ┌───────────────┐
+   │ Rule Layer     │  (fast, cheap, strict)
+   └──────┬────────┘
+          ↓ if unclear
+   ┌───────────────┐
+   │ AI Router      │  (Gemini reasoning)
+   └──────┬────────┘
+          ↓
+Event / Profile / Chat / Ignore
+
+    
