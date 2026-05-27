@@ -1,48 +1,61 @@
+import re
+
 class Rulelayer:
     def __init__(self):
-        self.rules=[
-            "i  studied",
+        self.rules = [
+            "i studied",
             "i slept",
             "i worked",
             "today i",
             "yesterday i"
         ]
-        self.profile=[
+        self.profile = [
             "i prefer",
             "i usually",
             "i always",
             "i struggle with",
             "i am good at"
-
         ]
-        self.ignore=[
+        self.ignore = [
             "ok",
             "lol",
             "haha",
             "nice",
             "cool"
- ]
-def normalize(self,message:str):
-    return message.lower().strip()
-def is_event(self,message:str):
-    for signal in self.rules:
-        if signal in self.rules:
-            return True
+        ]
+
+    def normalize(self, message: str) -> str:
+        return message.lower().strip()
+
+    def _matches_pattern(self, signal: str, message: str) -> bool:
+        # Check for whole-word or phrase boundary to prevent substring greediness
+        pattern = r'\b' + re.escape(signal) + r'\b'
+        return bool(re.search(pattern, message, re.IGNORECASE))
+
+    def is_event(self, message: str) -> bool:
+        for signal in self.rules:
+            if self._matches_pattern(signal, message):
+                return True
         return False
-def is_profile(Self,message:str):
-    for signal in self.profile:
-        if signal  in self.profile:
-            return True
+
+    def is_profile(self, message: str) -> bool:
+        for signal in self.profile:
+            if self._matches_pattern(signal, message):
+                return True
         return False
-def is_ignore(Self,message:Str):
-    for signal in self.ignore:
-        if signal in self.ignore:
-            return True
+
+    def is_ignore(self, message: str) -> bool:
+        for signal in self.ignore:
+            if self._matches_pattern(signal, message):
+                return True
         return False
-def classify(self, message:str):
-    message = self.normalize(message):
-    if self.is_ignore(message):
-        return "ignore"
-    
-     
-        
+
+    def classify(self, message: str) -> str:
+        norm_message = self.normalize(message)
+        if self.is_ignore(norm_message):
+            return "ignore"
+        if self.is_event(norm_message):
+            return "event"
+        if self.is_profile(norm_message):
+            return "profile"
+        return "unknown"
