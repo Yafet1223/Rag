@@ -21,6 +21,25 @@ build/
 .env.*
 !.env.example
 
+# Local databases (runtime memory — do not commit user data)
+*.sqlite
+*.sqlite3
+*.db
+store_db
+Fastapi/store_db
+
+# Test databases
+test_*.sqlite
+test_store.sqlite
+test_profile_store.sqlite
+
+# Node / Next.js (frontend)
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
 # Test / coverage
 .pytest_cache/
 .coverage
@@ -33,3 +52,12 @@ htmlcov/
 Thumbs.db
 *.swp
 *.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
