@@ -18,12 +18,23 @@ class AIRouter:
 
     def classify(self, message: str) -> dict:
         prompt = f"""You are a memory routing system for a personalized AI life assistant.
-Your job is to analyze the user's message and classify it into one of these four categories:
+Classify the user message into exactly one category:
 
-1. 'event' - Things the user did, scheduled, or experienced (e.g., studying, sleeping, praying, working, mood).
-2. 'profile' - Explicit preferences, habits, personality, standards, strengths, or weaknesses (e.g., "I prefer coffee", "I struggle with focusing").
-3. 'chat' - Casual conversations, general questions, greetings, or off-topic messages.
-4. 'ignore' - Short, low-value conversational responses that don't need memory storage (e.g., "haha", "ok", "cool").
+1. 'event' - A COMPLETED past activity they are reporting (e.g. "I studied 2 hours today", "I slept at 2am last night").
+   NOT for hypotheticals ("if I sleep...") or plans ("I'm about to sleep").
+
+2. 'profile' - Durable facts, rules, preferences, causes and effects (e.g. "I prefer coffee",
+   "If I sleep after midnight I get a headache tomorrow", "I struggle with focus in noise").
+
+3. 'chat' - Questions, greetings, advice requests, or imminent decisions needing a conversational reply
+   (e.g. "I'm about to sleep after midnight", "Should I stay up?", "How can I focus?").
+
+4. 'ignore' - Very short low-value replies ("ok", "lol", "haha").
+
+Examples:
+- "if i sleep after midnight my headache starts tomorrow" → profile
+- "hey i am about to sleep after midnight" → chat
+- "i studied 3 hours and feel tired" → event
 
 User Message: "{message}"
 """

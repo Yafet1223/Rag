@@ -1,11 +1,28 @@
-from fastapi import FastAPI
+"""
+Deprecated: use the unified assistant API instead.
 
-from ChatRoute.chat import router as chat_router
+  cd <project root>
+  python api/main.py
 
-app = FastAPI()
+The old /chat endpoint only buffered messages without memory routing.
+"""
 
-app.include_router(chat_router)
+if __name__ == "__main__":
+    import os
+    import sys
+    from pathlib import Path
 
-@app.get("/")
-def root():
-    return {"message": "Chatbot API is running! Use the /chat endpoint."}
+    root = Path(__file__).resolve().parent.parent
+    sys.path.insert(0, str(root))
+    os.chdir(root)
+
+    print("Chat_buffer is deprecated. Starting unified API (api/main.py)...")
+
+    import uvicorn
+
+    uvicorn.run(
+        "api.main:app",
+        host=os.getenv("API_HOST", "127.0.0.1"),
+        port=int(os.getenv("API_PORT", "8000")),
+        reload=True,
+    )

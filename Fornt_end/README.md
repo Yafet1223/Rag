@@ -19,4 +19,5 @@ npm run dev
 
 Notes:
 - This scaffold implements a production-friendly structure and components, but does not connect to the backend.
-- Pages: Dashboard, Chat, Profile, Settings, Auth (login/signup) — implement API integration later in `services/`.
+- Pages: Dashboard, Chat, Profile, Settings, Auth (login/signup).
+- API: set `NEXT_PUBLIC_API_URL` in `.env.local` (see `.env.local.example`) and run `python api/main.py` from the project root.

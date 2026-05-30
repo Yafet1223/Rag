@@ -1,12 +1,5 @@
-import { ProfileSummary } from '@/components/profile/ProfileSummary';
-import { ProfileCard } from '@/components/profile/ProfileCard';
+import { ProfileSection } from '@/components/profile/ProfileSection';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-
-const traits = [
-  { title: 'Resilience', value: 'High', tone: 'strength' },
-  { title: 'Focus balance', value: 'Moderate', tone: 'growth' },
-  { title: 'Routine strength', value: 'Growing', tone: 'focus' }
-] as const;
 
 export default function ProfilePage() {
   return (
@@ -14,14 +7,11 @@ export default function ProfilePage() {
       <section className="rounded-[2rem] border border-white/10 bg-slate-950/80 p-8 shadow-soft backdrop-blur-xl">
         <SectionHeading title="Profile" description="Your preferences, habits, and productivity strengths." />
         <p className="mt-5 text-sm leading-7 text-slate-300">
-          Use this page to track what works best for you and where the AI can offer personalized suggestions.
+          Facts are loaded from your assistant memory. Tell the chat something like &quot;I prefer studying at night&quot; to add more.
         </p>
       </section>
 
-      <div className="grid gap-6 xl:grid-cols-[0.9fr_0.7fr]">
-        <ProfileSummary traits={traits} />
-        <ProfileCard />
-      </div>
+      <ProfileSection />
     </div>
   );
 }

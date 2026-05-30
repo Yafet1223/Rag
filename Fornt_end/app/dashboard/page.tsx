@@ -23,6 +23,13 @@ const recommendations = [
 
 export default async function DashboardPage() {
   const stats = await fetchDashboardStats();
+  const trendLines =
+    'trendLines' in stats && Array.isArray(stats.trendLines) && stats.trendLines.length > 0
+      ? stats.trendLines
+      : [
+          'Focus windows are strongest when you log consistent study sessions.',
+          'Use chat to log mood, sleep, and habits for richer insights.'
+        ];
 
   return (
     <div className="space-y-8">
@@ -40,12 +47,11 @@ export default async function DashboardPage() {
         <div className="rounded-[2rem] border border-white/10 bg-slate-950/80 p-8 shadow-soft backdrop-blur-xl">
           <SectionHeading title="Trend signals" description="AI-driven summary of your current productivity patterns." />
           <div className="mt-6 space-y-4">
-            <div className="rounded-[1.75rem] border border-white/10 bg-slate-900/80 p-5">
-              <p className="text-sm text-slate-400">Focus windows are strongest between 9–11AM.</p>
-            </div>
-            <div className="rounded-[1.75rem] border border-white/10 bg-slate-900/80 p-5">
-              <p className="text-sm text-slate-400">You maintain momentum best with 45–55 minute cycles.</p>
-            </div>
+            {trendLines.map((line) => (
+              <div key={line} className="rounded-[1.75rem] border border-white/10 bg-slate-900/80 p-5">
+                <p className="text-sm text-slate-400">{line}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -27,7 +27,7 @@ export const ChatShell = () => {
   const lastMessage = messages[messages.length - 1];
 
   const handleSend = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || isTyping) return;
 
     const userMessage: Message = {
       id: `user-${Date.now()}`,
@@ -40,11 +40,25 @@ export const ChatShell = () => {
     setInput('');
     setIsTyping(true);
 
-    const response = await fetchChatResponse(userMessage.content);
-    setTimeout(() => {
+    try {
+      const response = await fetchChatResponse(userMessage.content);
       setMessages((current) => [...current, response]);
+    } catch (err) {
+      const fallback =
+        'Could not reach the assistant API. Start it with: python api/main.py (and set GEMINI_API_KEY in .env).';
+      const content = err instanceof Error && err.message ? err.message : fallback;
+      setMessages((current) => [
+        ...current,
+        {
+          id: `assistant-error-${Date.now()}`,
+          role: 'assistant',
+          content,
+          createdAt: new Date().toISOString()
+        }
+      ]);
+    } finally {
       setIsTyping(false);
-    }, 850);
+    }
   };
 
   useEffect(() => {
@@ -100,8 +114,14 @@ export const ChatShell = () => {
             <textarea
               value={input}
               onChange={(event) => setInput(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                  event.preventDefault();
+                  void handleSend();
+                }
+              }}
               rows={2}
-              placeholder="Ask your assistant anything..."
+              placeholder="Chat, log an event (I studied 2h), or share a preference..."
               className="min-h-[80px] w-full resize-none rounded-2xl border border-slate-800 bg-slate-950/95 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-400/20"
             />
             <Button onClick={handleSend} className="w-full sm:w-auto sm:shrink-0">
